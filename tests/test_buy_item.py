@@ -43,9 +43,9 @@ class TestBuyItem(TestBase):
          .fill_form(username, PASSWORD))
 
         (HomePage(self.driver, is_logged_in=True)
-         .add_to_cart("Roses")
-         .add_to_cart("Lilies")
-         .add_to_cart("Tulips")
+         .add_to_cart("Roses", "pink", "M")
+         .add_to_cart("Lilies", "red", "L")
+         .add_to_cart("Tulips", "red", "M")
          .go_to_shopping_cart())
 
         (ShoppingCartPage(self.driver)
@@ -66,7 +66,7 @@ class TestBuyItem(TestBase):
          .assert_order_contains_data(self,
                                      order_no=1,
                                      expected_date=datetime.now().strftime("%Y-%m-%d"),
-                                     expected_price=49.99,
+                                     expected_price=88.99,
                                      expected_payment_type="cash",
                                      expected_items=["Roses", "Lilies", "Tulips"]))
 
